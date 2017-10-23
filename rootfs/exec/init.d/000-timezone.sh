@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -n ${TZ} -a "$(cat /etc/timezone)" != ${TZ} ];then
     if [ -f /usr/share/zoneinfo/${TZ} ];then

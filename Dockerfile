@@ -2,8 +2,10 @@ FROM       debian:stretch-slim
 
 MAINTAINER sloth@devils.su
 
+ENV        DEBIAN_FRONTEND=noninteractive
+
 RUN		   apt-get update && \
-           apt-get -y install tzdata locales \
+           apt-get -y install tzdata locales apt-utils \
                               supervisor cron \
            && \
            locale-gen en_US.UTF-8 && \
