@@ -4,7 +4,7 @@ MAINTAINER sloth@devils.su
 
 ENV        DEBIAN_FRONTEND=noninteractive
 
-RUN		   apt-get update && \
+RUN        apt-get update && \
            apt-get -y install tzdata locales apt-utils \
                               supervisor cron \
            && \
