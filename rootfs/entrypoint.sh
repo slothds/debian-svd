@@ -1,6 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 PATH='/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 _exec=( supervisord )
+
+__terminate_svc() {
+    echo "Stopping services..."
+    sleep 2
+    kill -TERM $(cat /var/run/supervisord.pid)
+}
+
+__reconfigs_svc() {
+    echo "Reload configuration..."
+    sleep 2
+    kill -HUP  $(cat /var/run/supervisord.pid) 
+}
 
 # Including and exporting ENV configs
 set -o allexport
@@ -16,5 +28,8 @@ do
     . ${_init}
 done
 
+trap __reconfigs_svc HUP
+trap __terminate_svc INT QUIT TERM
+
 #!/bin/sh
-eval ${_exec[@]} $@
+eval exec ${_exec[@]} $@
