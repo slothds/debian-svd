@@ -15,7 +15,7 @@ RUN         apt update && apt -y upgrade && \
                 || apt -y install --no-install-recommends dirmngr; \
             } && \
             apt -y install --no-install-recommends tzdata locales apt-utils \
-                           supervisor cron && \
+                                                   supervisor cron && \
             apt -y autoremove && apt -y autoclean && \
             apt -y clean && apt -y clean all && \
             rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*
