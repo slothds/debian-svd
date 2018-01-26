@@ -28,8 +28,8 @@ do
     . ${_init}
 done
 
+#!/usr/bin/env bash
 trap __reconfigs_svc HUP
 trap __terminate_svc INT QUIT TERM
 
-#!/bin/sh
 eval exec ${_exec[@]} $@
