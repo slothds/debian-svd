@@ -4,7 +4,8 @@ LABEL       maintainer="sloth@devils.su"
 
 ENV         DEBIAN_FRONTEND=noninteractive
 
-RUN         apt-get update && apt-get -y upgrade ; \
+RUN         mkdir -p /usr/share/man/man1 && touch /usr/share/man/man1/sh.1.gz && \
+            apt-get update && apt-get -y upgrade && \
             { \
                which gpg \
                || apt-get -y install --no-install-recommends gnupg2 \
