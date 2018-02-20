@@ -18,14 +18,14 @@ __reconfigs_svc() {
 set -o allexport
 for _env in /exec/env.d/*.env
 do
-    . ${_env}
+    source ${_env}
 done
 set +o allexport
 
 # Executing prestart init scripts.
 for _init in /exec/init.d/*.sh
 do
-    . ${_init}
+    source ${_init}
 done
 
 #!/usr/bin/env bash
