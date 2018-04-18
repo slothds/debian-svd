@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 _curent=`crontab -l 2>/dev/null`
 
-if [ -z "${_curent}" ];then
+if [[ -z ${_curent} ]];then
 cat <<-EOF | crontab -u root -
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 #####################################################################
@@ -12,6 +12,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 # |     |       |       |       ----------- day of week
 # |     |       |       |       |       --- command
 # |     |       |       |       |       |
+*       *       *       *       *       run-parts /etc/periodic/1min
 */15    *       *       *       *       run-parts /etc/periodic/15min
 0       *       *       *       *       run-parts /etc/periodic/hourly
 0       0       *       *       *       run-parts /etc/periodic/daily

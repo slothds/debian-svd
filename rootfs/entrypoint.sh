@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 PATH='/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
-_exec=( supervisord )
+_svd=( supervisord --nodaemon )
 
 __terminate_svc() {
     echo "Stopping services..."
@@ -32,4 +32,11 @@ done
 trap __reconfigs_svc HUP
 trap __terminate_svc INT QUIT TERM
 
-eval exec ${_exec[@]} $@
+if [[ -z $@ ]];then
+    _svd+=( --pidfile /run/supervisord.pid )
+    _svd+=( --logfile /dev/null )
+else
+    _svd+=( $@ )
+fi
+
+eval exec ${_svd[@]}
