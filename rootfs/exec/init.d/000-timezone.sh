@@ -7,7 +7,7 @@ if [[ ! -f /etc/timezone ]];then
     echo 'UTC' > /etc/timezone
 fi
 
-if [[ -n ${TZ} -a $(cat /etc/timezone) != ${TZ} ]];then
+if [[ -n ${TZ} && $(cat /etc/timezone) != ${TZ} ]];then
     if [[ -f /usr/share/zoneinfo/${TZ} ]];then
         cp /usr/share/zoneinfo/${TZ} /etc/localtime
         echo "${TZ}" > /etc/timezone
